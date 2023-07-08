@@ -18,7 +18,11 @@ const initialValues={
     email:'',
     channel:'',
     comments:'',
-    address:''
+    address:'',
+    social:{
+        facebook:"",
+        twitter:" "
+    }
 }
 
 const onSubmit= values=>{
@@ -75,12 +79,19 @@ function YouTubeForm() {
              {/* 2)Field component use as prop to decide what elemt to render  */}
              {/* 3)we need to render another input elemnt to collect the users address,we could this by the way we are rendering name ,email or channel but there is render props way  */}
             <Field id="comments" as="textarea" name='comments'/>  
-
-
-
             </div>
             
-           
+                        <div className='form-control'>
+                                <label htmlFor='facebook'>Facebook Profile</label>
+                                <Field name='social.facebook' id='facebook' type='text'/>
+
+                        </div>
+
+                        <div className='form-control'>
+                                <label htmlFor='twitter'>Twitter Profile</label>
+                                <Field name='social.twitter' id='twitter' type='text'/>
+
+                        </div>
 
 
             <button type='submit'>Submit</button>
