@@ -1,5 +1,5 @@
 import React from 'react'
-import {useFormik} from 'formik'
+import {Formik} from 'formik'
 
 import * as Yup from 'yup'
 
@@ -22,21 +22,11 @@ const validationSchema = Yup.object({
 })
 
 function YouTubeForm() {
-
-    const formik = useFormik({
-        initialValues,
-        onSubmit,
-        validationSchema
-    });
-
-    console.log("values:", formik.values)
-    console.log("Form erros",formik.errors)
-    console.log("Form visited fields",formik.touched)
-
-    //onBlue shows if the particular field is visited or not 
-
   return (
-    <div>
+    <Formik
+    initialValues={initialValues}
+    validationSchema = {validationSchema}
+    onSubmit = {onSubmit}>
         <form onSubmit={formik.handleSubmit}>
             <div className='form-control'>
                     <label htmlFor='name'>Name</label>
@@ -66,7 +56,7 @@ function YouTubeForm() {
         </form>
 
 
-    </div>
+    </Formik>
   )
 }
 export default YouTubeForm
