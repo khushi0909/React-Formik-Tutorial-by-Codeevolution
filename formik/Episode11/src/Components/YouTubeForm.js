@@ -1,5 +1,5 @@
 import React from 'react'
-import {Formik} from 'formik'
+import {Formik,Form} from 'formik'
 
 import * as Yup from 'yup'
 
@@ -27,7 +27,7 @@ function YouTubeForm() {
     initialValues={initialValues}
     validationSchema = {validationSchema}
     onSubmit = {onSubmit}>
-        <form onSubmit={formik.handleSubmit}>
+        <Form >
             <div className='form-control'>
                     <label htmlFor='name'>Name</label>
                     <input type="text" id="name" name="name" {...formik.getFieldProps('name')}/>
@@ -53,7 +53,7 @@ function YouTubeForm() {
 
 
             <button type='submit'>Submit</button>
-        </form>
+        </Form>
 
 
     </Formik>
