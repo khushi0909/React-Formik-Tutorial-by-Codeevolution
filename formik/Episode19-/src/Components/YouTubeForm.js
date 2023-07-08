@@ -1,5 +1,5 @@
 import React from 'react'
-import {Formik,Form,Field,ErrorMessage,FieldArray} from 'formik'
+import {Formik,Form,Field,ErrorMessage,FieldArray,FastField} from 'formik'
 
 import * as Yup from 'yup'
 import TextError from './TextError'
@@ -154,3 +154,11 @@ export default YouTubeForm
 {/* <ErrorMessage name='channel'/> */}
 // witht the above line now the error message isnot wrapped in any of the html component ,can check in console ,to do that you need to use the component prop and can set it to any html element also you can even set it to the custom react component 
 //Alternatice to above is render props pattern 
+
+
+//Fast Field component is mainly meant for the optimization ,if form has 30 field and if the form has complex validation rquirements 
+// if you write consolelog in address field and in the form change the channel field ,you will notice that every time channel field state chages address field also gets render ,so see what happens witht the fast field component ,if in address you will replace Fiield with FAstField,now if you change the channel field with some typing you can see that no new statement of rndered is logged,but if you change the value of address field itself ,you will see log statements again
+
+//fast Field is the optimized version of the field component ,which intermally implememts the ship component update lifecycle method to block on the additional renders unless there are direct updates to the fastfield form control itself,so if you feel that particular field is independent of the all other fields,then you can use this
+
+//be careful while using FastField -see in doc about the situations
