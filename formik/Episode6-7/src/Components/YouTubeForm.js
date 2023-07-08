@@ -47,14 +47,29 @@ function YouTubeForm() {
   return (
     <div>
         <form onSubmit={formik.handleSubmit}>
-            <label htmlFor='name'>Name</label>
-            <input type="text" id="name" name="name" onChange={formik.handleChange} value={formik.values.name}/>
+            <div className='form-control'>
+                    <label htmlFor='name'>Name</label>
+                    <input type="text" id="name" name="name" onChange={formik.handleChange} value={formik.values.name}/>
+                    {formik.errors.name?<div className="error">{formik.errors.name}</div>:null}
+            </div>
+            
 
-            <label htmlFor = 'email'>Email</label>
-            <input type='email' name='email' id='email' onChange={formik.handleChange} value={formik.values.email}/>
+            <div className='form-control'>
+                    <label htmlFor = 'email'>Email</label>
+                    <input type='email' name='email' id='email' onChange={formik.handleChange} value={formik.values.email}/>
+                    {formik.errors.email?<div className="error">{formik.errors.email}</div>:null}
 
-            <label htmlFor='channel'>Channel</label>
-            <input type="text" id="channel" name="channel" onChange={formik.handleChange} value={formik.values.channel}/>
+            </div>
+            
+
+            <div className='form-control'>
+                    <label htmlFor='channel'>Channel</label>
+                    <input type="text" id="channel" name="channel" onChange={formik.handleChange} value={formik.values.channel}/>
+                    {formik.errors.channel?<div className="error">{formik.errors.channel}</div>:null}
+
+            </div>
+            
+
 
             <button type='submit'>Submit</button>
         </form>
