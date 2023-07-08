@@ -1,7 +1,12 @@
 import React from 'react'
-import {Formik,Form,Field} from 'formik'
+import {Formik,Form,Field,ErrorMessage} from 'formik'
 
 import * as Yup from 'yup'
+
+// Error message -takes care of Field visited an error is there 
+//Formik -wrapping entire form under Formik Component -accepts initialValues ,validationSchema and onsubmit handler as props 
+//Form-replaces form html tag with the form component  -this will automatically link the onSubmit event witht the formsubmit handler or method passed to the form html element 
+//Field-replaces each input field with the Field component ,this field component hooks in to formik using the name attribute ,it will take care of the hndling value ,handling onchange  and onBlur event
 
 
 const initialValues={
@@ -30,15 +35,15 @@ function YouTubeForm() {
         <Form >
             <div className='form-control'>
                     <label htmlFor='name'>Name</label>
-                    <Field type="text" id="name" name="name" }/>
-                    {formik.touched.name && formik.errors.name?<div className="error">{formik.errors.name}</div>:null}
+                    <Field type="text" id="name" name="name" />
+                    <ErrorMessage name='name'/>
             </div>
             
 
             <div className='form-control'>
                     <label htmlFor = 'email'>Email</label>
                     <Field type='email' name='email' id='email' />
-                    {formik.touched.email && formik.errors.email?<div className="error">{formik.errors.email}</div>:null}
+                    <ErrorMessage name='email'/>
 
             </div>
             
@@ -46,7 +51,7 @@ function YouTubeForm() {
             <div className='form-control'>
                     <label htmlFor='channel'>Channel</label>
                     <Field type="text" id="channel" name="channel"/>
-                    {formik.touched.channel && formik.errors.channel?<div className="error">{formik.errors.channel}</div>:null}
+                    <ErrorMessage name='channel'/>
 
             </div>
             
