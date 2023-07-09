@@ -156,3 +156,30 @@ we have two more helper methods -setFieldTouched -will add that particular field
 In setTouchec we have to specify the objects as argument ,which contains all the fields that we want to have touched set to true
 
 one example where we can use this is to check if the user name alread exist in the data base ,so right beside the form field you can add check username button ,that can perform that validation ,you can make use of the field level prop,to check if the username is unique or not 
+
+### Disabling the submit button
+
+the scenarios under which you use this is dependent upon on your requiremen and how you want your user experience to be 
+
+two scenario explaining is
+1)disabling the submit button based on the validty of the form state,ie if form state is invalid we will disable the submit button 
+2)disabling the submit button when the form submission is in progress
+
+
+use isValid method from the methods available while using formik 
+
+isValid is the readonly property that is set to true,if the error object is empty ,so it lets us know that the form has no errors at any given time ,we can use this property to disable the submit button 
+
+so at first when isValid condition is applied at the page load ,submit button is not disabled as isvalid at page load is not false ,but some clients may want it to be disabled untill all errors are validated ,to do that  we will
+a) add validate onmount prop on the formik component and set it to true 
+
+    validate on mount is the boolean prop
+
+on page load as soon as the form mounts on the DOM formik will run the validations against each field and populate the errors objecct,if errors object is not empty ,isValid is false,if is valid is false ,the form state is invalid  and hence the submit button  is disabled 
+
+DRAWBACK-if you have a form with 20 or 30 fields with complex validations it really doesnt make sense to run all the validation rules,even before the user has typed in the single letter ,so this option is suitable for the form of very few fields with the simple validations 
+
+b) use property dirty instead of isValid property and this basically is a boolean value which indicates ,if atleast one of the form fields value has changed ,since it was intialized
+
+so if you onload form an dcheck dorty value its false and error object are empty ,hen you click on one of the input field and click out ,then error object is populated but the dirty value is still false ,if yuu however change any of the field values to something diferent from what the initial value is ,it gets set to true
+
