@@ -38,14 +38,19 @@ const validationSchema = Yup.object({
 
 })
 
+const validateComments = value =>{
+    let error
+    if(!value){
+        error ='Required'
+    }
+    return error
+}
 function YouTubeForm() {
   return (
     <Formik
     initialValues={initialValues}
     validationSchema = {validationSchema}
-    onSubmit = {onSubmit}
-    validateOnChange = {false}
-    validateOnBlur={false}>
+    onSubmit = {onSubmit}>
         <Form >
             <div className='form-control'>
                     <label htmlFor='name'>Name</label>
@@ -75,14 +80,17 @@ function YouTubeForm() {
             <div className='form-control'>
             <label htmlFor='comments'>Comments</label>
             {/* <Field id="comments" name='comments'/>      */}
-             {/* //This will render the input elemnt not the text area ,to instruct formik to render it as a text area  we need a add the as prop passing inn the text area  */}
+             {/* //This will render the input element not the text area ,to instruct formik to render it as a text area  we need a add the AS prop passing inn the text area  */}
 
              {/* as prop can accept value either as the input or text area or select orcustom react component as well */}
              {/* Alternatively ,as prop can be replaced with the component prop,though internal implementation slightly differs -stick to using as prop as component prop was deprecated then undeprecated  */}
 
              {/* 2)Field component use as prop to decide what elemt to render  */}
              {/* 3)we need to render another input elemnt to collect the users address,we could this by the way we are rendering name ,email or channel but there is render props way  */}
-            <Field id="comments" as="textarea" name='comments'/>  
+            <Field 
+            id="comments"
+             as="textarea" name='comments' validate={validateComments}/>  
+             <ErrorMessage name='comments' component={TextError}/>
             </div>
             
                         <div className='form-control'>

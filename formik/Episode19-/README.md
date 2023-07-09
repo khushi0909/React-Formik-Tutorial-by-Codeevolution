@@ -128,4 +128,17 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
             //ABility to render the different element other than the input element ex-text area field you want to add
 
             
-###  
+###  FIELD LEVEL VALIDATION
+two ways -
+
+1st we pass in the validate prop
+2nd we specify the YUP object schema using the validation schema 
+
+bith these props are available on the top at the Formik component 
+
+Formik also allows us to specify the validation function at the field level 
+
+its very similar to th custom validate hook used in OldYouTube Form -it receives automaticall y the values of all fields 
+
+THis is available in fastField as well,now why you will use field level validation over the form level validation-depends on the project,one possible usecasecan be that you want to render your usespace based on JSON that you fetched from an API call,oncce you get the JSON representation of the FORM you can iterate over the objects ,building the validation function in each iteration and assigning it to the validate prop on the field or fast field component
+
