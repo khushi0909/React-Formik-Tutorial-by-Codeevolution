@@ -68,3 +68,64 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### General Things 
+        
+    // Error message -takes care of Field visited an error is there 
+    //Formik -wrapping entire form under Formik Component -accepts initialValues ,validationSchema and onsubmit handler as props 
+    //Form-replaces form html tag with the form component  -this will automatically link the onSubmit event witht the formsubmit handler or method passed to the form html element 
+    //Field-replaces each input field with the Field component ,this field component hooks in to formik using the name attribute ,it will take care of the hndling value ,handling onchange  and onBlur event
+    //ErrorMessage-for error message we use error message component ,which conditionally renders the error corresponding to a form field ,only if the fiels had been visited and if the error exist 
+### WHEN THE FORMIK VALIDATION RUNS 
+
+// Imp -Formik run validation after any change event in the form ,suppose you write something in channel and check console you will see that erros are populating
+//Second scenario -if you click inside the channel and then click outside ,you can see the erros are populated again ,i.e formik runs validation after every blurred event 
+
+
+//3rd scenario -when you directly click o submit object ,without clicking on any of the field ,so whenever the form sbmission is attempeted the formik runs the validation 
+
+
+// if the validatioon doesnt pass for all the fiels the onsubmit handler never gets executed 
+
+
+// formik will take care of passing all the validation rules 
+
+// three scenarios when validation runs is :-
+// onChange 
+// Onsubmit 
+// onblur 
+
+//Sometimes you may not want formik to run automatically the validation for us ,so formik provides the two props to control the first two scenarios 
+
+// onFOrmik component you can specify a prop validate on change and set it to false 
+
+//Also you can pass validate onBlur 
+
+### FAST FIELD
+
+//Fast Field component is mainly meant for the optimization ,if form has 30 field and if the form has complex validation rquirements 
+// if you write consolelog in address field and in the form change the channel field ,you will notice that every time channel field state chages address field also gets render ,so see what happens witht the fast field component ,if in address you will replace Fiield with FAstField,now if you change the channel field with some typing you can see that no new statement of rndered is logged,but if you change the value of address field itself ,you will see log statements again
+
+//fast Field is the optimized version of the field component ,which intermally implememts the ship component update lifecycle method to block on the additional renders unless there are direct updates to the fastfield form control itself,so if you feel that particular field is independent of the all other fields,then you can use this
+
+//be careful while using FastField -see in doc about the situations
+
+### ERRORMESSAGE
+{/* <ErrorMessage name='channel'/> */}
+// witht the above line now the error message isnot wrapped in any of the html component ,can check in console ,to do that you need to use the component prop and can set it to any html element also you can even set it to the custom react component 
+//Alternatice to above is render props pattern 
+
+### FIELD COMPONENT_RENDERING THE OTHER WAY
+     {/* <Field id="comments" name='comments'/>      */}
+             {/* //This will render the input element not the text area ,to instruct formik to render it as a text area  we need a add the AS prop passing inn the text area  */}
+
+             {/* as prop can accept value either as the input or text area or select orcustom react component as well */}
+             {/* Alternatively ,as prop can be replaced with the component prop,though internal implementation slightly differs -stick to using as prop as component prop was deprecated then undeprecated  */}
+
+             {/* 2)Field component use as prop to decide what elemt to render  */}
+             {/* 3)we need to render another input elemnt to collect the users address,we could this by the way we are rendering name ,email or channel but there is render props way  */}
+             //Field components will pass through any addtional props that you specify ex-placeholder
+            //ABility to render the different element other than the input element ex-text area field you want to add
+
+            
+###  

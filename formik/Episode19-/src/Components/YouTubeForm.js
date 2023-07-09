@@ -43,7 +43,9 @@ function YouTubeForm() {
     <Formik
     initialValues={initialValues}
     validationSchema = {validationSchema}
-    onSubmit = {onSubmit}>
+    onSubmit = {onSubmit}
+    validateOnChange = {false}
+    validateOnBlur={false}>
         <Form >
             <div className='form-control'>
                     <label htmlFor='name'>Name</label>
@@ -116,6 +118,8 @@ function YouTubeForm() {
                                             const {push,remove,form} = fieldArrayProps
                                             const {values} = form
                                             const {phNumbers} = values
+
+                                            console.log('Form Errors',form.errors)
                                             return <div>
                                                     {
                                                         phNumbers.map((phNumber,index)=>(
@@ -162,3 +166,29 @@ export default YouTubeForm
 //fast Field is the optimized version of the field component ,which intermally implememts the ship component update lifecycle method to block on the additional renders unless there are direct updates to the fastfield form control itself,so if you feel that particular field is independent of the all other fields,then you can use this
 
 //be careful while using FastField -see in doc about the situations
+
+
+// WHEN THE FORMIK VALIDATION RUNS 
+
+// Imp -Formik run validation after any change event in the form ,suppose you write something in channel and check console you will see that erros are populating
+//Second scenario -if you click inside the channel and then click outside ,you can see the erros are populated again ,i.e formik runs validation after every blurred event 
+
+
+//3rd scenario -when you directly click o submit object ,without clicking on any of the field ,so whenever the form sbmission is attempeted the formik runs the validation 
+
+
+// if the validatioon doesnt pass for all the fiels the onsubmit handler never gets executed 
+
+
+// formik will take care of passing all the validation rules 
+
+// three scenarios when validation runs is :-
+// onChange 
+// Onsubmit 
+// onblur 
+
+//Sometimes you may not want formik to run automatically the validation for us ,so formik provides the two props to control the first two scenarios 
+
+// onFOrmik component you can specify a prop validate on change and set it to false 
+
+//Also you can pass validate onBlur 
