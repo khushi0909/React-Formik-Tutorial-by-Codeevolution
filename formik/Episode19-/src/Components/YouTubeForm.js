@@ -51,7 +51,7 @@ function YouTubeForm() {
     initialValues={initialValues}
     validationSchema = {validationSchema}
     onSubmit = {onSubmit}
-    validateOnMount
+    // validateOnMount
     >
         {
             (formik)=>{
@@ -169,7 +169,7 @@ function YouTubeForm() {
                                         comments:true,
                                     })}>Validate All</button>
                         
-                        <button type='submit' disabled={!formik.isValid}>Submit</button>
+                        <button type='submit' disabled={!(formik.dirty && formik.isValid)}>Submit</button>
                     </Form>
             
                     )

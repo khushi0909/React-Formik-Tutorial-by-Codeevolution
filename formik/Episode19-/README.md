@@ -179,7 +179,13 @@ on page load as soon as the form mounts on the DOM formik will run the validatio
 
 DRAWBACK-if you have a form with 20 or 30 fields with complex validations it really doesnt make sense to run all the validation rules,even before the user has typed in the single letter ,so this option is suitable for the form of very few fields with the simple validations 
 
-b) use property dirty instead of isValid property and this basically is a boolean value which indicates ,if atleast one of the form fields value has changed ,since it was intialized
+b) use property dirty in conjusction with isValid property and this basically is a boolean value which indicates ,if atleast one of the form fields value has changed ,since it was intialized
 
 so if you onload form an dcheck dorty value its false and error object are empty ,hen you click on one of the input field and click out ,then error object is populated but the dirty value is still false ,if yuu however change any of the field values to something diferent from what the initial value is ,it gets set to true
+
+
+DRAWBACK- suppose if you also give intial values to email channel and comments apart from name ,now you will notiice the submit button is disabled,but we know that form state is now valid ,just because i havent changed a form field value ,i am not allowed to submit the form ,to make this submit button enabled ,all you have to do is to change the fields value
+so this is based on the assumption that onpage load ,i.e without the user changing any of the form field values ,the form state is always invalid 
+if you know for the fact that use will interact with your form and enter values which will never be excactly the same value as the inital values object then you can stick to this option 
+
 
