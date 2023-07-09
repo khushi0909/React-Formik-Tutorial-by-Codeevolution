@@ -189,3 +189,16 @@ so this is based on the assumption that onpage load ,i.e without the user changi
 if you know for the fact that use will interact with your form and enter values which will never be excactly the same value as the inital values object then you can stick to this option 
 
 
+## Disabling when the submission is in progress
+
+lets day you have a user registration form ,when you fill details and click on submit ,it will make an api call to the server in the background to register the user ,during this time it is really imp,to disable the submit button,if notuser might end up in clicking the submit button twice or more number of times and this could be even more troublesome,if the form is a checkout form in an e-commerce site ,so the second scenario is to disable the submit btn ,till the background operation completes
+
+we will use property isSubmitting ,this is a boolean property ,which formik will set it to true ,if a form submission has been attenpted ,check if it is true and if yes then disable the submit button 
+
+now when you load submit button is enabled ,when you check the formik methods in console ,now if you ckick on submit and check the first method and last method of formik ,in first isSubmitting is true and will disable the submit button ,then once validation comletes an dif atall there is error (the formik will set isSubmitting to the d=false) and in last formik console isSubmititng is false and hence submit is enabled again 
+
+formik will set isSubmitting to false only when there are errors,but what happens when there are no errors ,the data gets submitted but our submit button is still disabled ,this is intended behaviour as the formik doesnt know when API is going to respond back ,we have to manually st isSubmitting to the false again and the way to do that is ONSUBMIT method
+
+onSubmit receives the second prop onSubmitProps .consolelog and see it inturns provide the methods and we will be using setSubmitting and set it to false ,and in turn this will enable the submit button
+
+In real scenarion you will wait for the api response and the will call the setSubmitting function 
