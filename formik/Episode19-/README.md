@@ -142,3 +142,17 @@ its very similar to th custom validate hook used in OldYouTube Form -it receives
 
 THis is available in fastField as well,now why you will use field level validation over the form level validation-depends on the project,one possible usecasecan be that you want to render your usespace based on JSON that you fetched from an API call,oncce you get the JSON representation of the FORM you can iterate over the objects ,building the validation function in each iteration and assigning it to the validate prop on the field or fast field component
 
+### Manually Triggery -Form and Field Level Validation 
+
+to b able to trigger formik provides the two helper methods and to access these we need to use the render props pattern on the entire form itself
+
+using two methods ,validatefield-it does take name arguments such as "comments" and validateform-it doesnt take any arguments  
+
+
+if you use these two it was not logging the error in console ,reason being if you check the errors object and touched object it was epty ,condition of touched and error needs to be satisfied efore showing an error 
+
+we have two more helper methods -setFieldTouched -will add that particular field to the touched object and setTouched - will add multiple fields to the touched object 
+
+In setTouchec we have to specify the objects as argument ,which contains all the fields that we want to have touched set to true
+
+one example where we can use this is to check if the user name alread exist in the data base ,so right beside the form field you can add check username button ,that can perform that validation ,you can make use of the field level prop,to check if the username is unique or not 

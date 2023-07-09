@@ -51,112 +51,129 @@ function YouTubeForm() {
     initialValues={initialValues}
     validationSchema = {validationSchema}
     onSubmit = {onSubmit}>
-        <Form >
-            <div className='form-control'>
-                    <label htmlFor='name'>Name</label>
-                    <Field type="text" id="name" name="name" />
-                    <ErrorMessage name='name' component='div'/>
-            </div>
-            
-
-            <div className='form-control'>
-                    <label htmlFor = 'email'>Email</label>
-                    <Field type='email' name='email' id='email' />
-                    <ErrorMessage name='email' component= {TextError}/>
-
-            </div>
-            
-
-            <div className='form-control'>
-                    <label htmlFor='channel'>Channel</label>
-                    <Field type="text" id="channel" name="channel" placeholder="YouTube Channel Name"/>
-                    <ErrorMessage name='channel'>
-                        {
-                            (errorMsg)=> <div className='error'>{errorMsg}</div>
-                        }
-                    </ErrorMessage>
-
-            </div>
-            <div className='form-control'>
-            <label htmlFor='comments'>Comments</label>
-            {/* <Field id="comments" name='comments'/>      */}
-             {/* //This will render the input element not the text area ,to instruct formik to render it as a text area  we need a add the AS prop passing inn the text area  */}
-
-             {/* as prop can accept value either as the input or text area or select orcustom react component as well */}
-             {/* Alternatively ,as prop can be replaced with the component prop,though internal implementation slightly differs -stick to using as prop as component prop was deprecated then undeprecated  */}
-
-             {/* 2)Field component use as prop to decide what elemt to render  */}
-             {/* 3)we need to render another input elemnt to collect the users address,we could this by the way we are rendering name ,email or channel but there is render props way  */}
-            <Field 
-            id="comments"
-             as="textarea" name='comments' validate={validateComments}/>  
-             <ErrorMessage name='comments' component={TextError}/>
-            </div>
-            
+        {
+            (formik)=>{
+                console.log('Formik Prop',formik)
+                    return (
+                        <Form >
                         <div className='form-control'>
-                                <label htmlFor='facebook'>Facebook Profile</label>
-                                <Field name='social.facebook' id='facebook' type='text'/>
-
-                        </div>
-
-                        <div className='form-control'>
-                                <label htmlFor='twitter'>Twitter Profile</label>
-                                <Field name='social.twitter' id='twitter' type='text'/>
-
+                                <label htmlFor='name'>Name</label>
+                                <Field type="text" id="name" name="name" />
+                                <ErrorMessage name='name' component='div'/>
                         </div>
                         
+            
                         <div className='form-control'>
-                            <label htmlFor='primaryPh'>Primary phone number</label>
-                            <Field type='text' id='primaryPh' name='phoneNumbers[0]'/>
- 
+                                <label htmlFor = 'email'>Email</label>
+                                <Field type='email' name='email' id='email' />
+                                <ErrorMessage name='email' component= {TextError}/>
+            
                         </div>
-
+                        
+            
                         <div className='form-control'>
-                            <label htmlFor='secondaryPh'>Secondary phone number</label>
-                            <Field type='text' id='secondaryPh' name='phoneNumbers[1]'/>
- 
-                        </div>
-
-                        <div className='form-control'>
-                                <label>List of phone numbers</label>
-                                <FieldArray name='phNumbers'>
+                                <label htmlFor='channel'>Channel</label>
+                                <Field type="text" id="channel" name="channel" placeholder="YouTube Channel Name"/>
+                                <ErrorMessage name='channel'>
                                     {
-                                        (fieldArrayProps)=>{
-                                            console.log('FielsArrayProps',fieldArrayProps)
-                                            const {push,remove,form} = fieldArrayProps
-                                            const {values} = form
-                                            const {phNumbers} = values
-
-                                            console.log('Form Errors',form.errors)
-                                            return <div>
-                                                    {
-                                                        phNumbers.map((phNumber,index)=>(
-                                                            <div key={index}>
-                                                                <Field name={`phNumbers[${index}]`}/>
-                                                                {
-                                                                    index>0 && <button type='button' onClick={()=>remove(index)}>-</button>
-                                                                }
-                                                                
-                                                                <button type='button' onClick={()=> push('')}>+</button>
-
-                                                            </div>
-                                                        )
-
-                                                        )
-                                                    }
-
-                                            </div>
-
-                                        }
+                                        (errorMsg)=> <div className='error'>{errorMsg}</div>
                                     }
-
-                                </FieldArray>
-
+                                </ErrorMessage>
+            
                         </div>
-
-            <button type='submit'>Submit</button>
-        </Form>
-
+                        <div className='form-control'>
+                        <label htmlFor='comments'>Comments</label>
+                        {/* <Field id="comments" name='comments'/>      */}
+                         {/* //This will render the input element not the text area ,to instruct formik to render it as a text area  we need a add the AS prop passing inn the text area  */}
+            
+                         {/* as prop can accept value either as the input or text area or select orcustom react component as well */}
+                         {/* Alternatively ,as prop can be replaced with the component prop,though internal implementation slightly differs -stick to using as prop as component prop was deprecated then undeprecated  */}
+            
+                         {/* 2)Field component use as prop to decide what elemt to render  */}
+                         {/* 3)we need to render another input elemnt to collect the users address,we could this by the way we are rendering name ,email or channel but there is render props way  */}
+                        <Field 
+                        id="comments"
+                         as="textarea" name='comments' validate={validateComments}/>  
+                         <ErrorMessage name='comments' component={TextError}/>
+                        </div>
+                        
+                                    <div className='form-control'>
+                                            <label htmlFor='facebook'>Facebook Profile</label>
+                                            <Field name='social.facebook' id='facebook' type='text'/>
+            
+                                    </div>
+            
+                                    <div className='form-control'>
+                                            <label htmlFor='twitter'>Twitter Profile</label>
+                                            <Field name='social.twitter' id='twitter' type='text'/>
+            
+                                    </div>
+                                    
+                                    <div className='form-control'>
+                                        <label htmlFor='primaryPh'>Primary phone number</label>
+                                        <Field type='text' id='primaryPh' name='phoneNumbers[0]'/>
+             
+                                    </div>
+            
+                                    <div className='form-control'>
+                                        <label htmlFor='secondaryPh'>Secondary phone number</label>
+                                        <Field type='text' id='secondaryPh' name='phoneNumbers[1]'/>
+             
+                                    </div>
+            
+                                    <div className='form-control'>
+                                            <label>List of phone numbers</label>
+                                            <FieldArray name='phNumbers'>
+                                                {
+                                                    (fieldArrayProps)=>{
+                                                        console.log('FielsArrayProps',fieldArrayProps)
+                                                        const {push,remove,form} = fieldArrayProps
+                                                        const {values} = form
+                                                        const {phNumbers} = values
+            
+                                                        // console.log('Form Errors',form.errors)
+                                                        return <div>
+                                                                {
+                                                                    phNumbers.map((phNumber,index)=>(
+                                                                        <div key={index}>
+                                                                            <Field name={`phNumbers[${index}]`}/>
+                                                                            {
+                                                                                index>0 && <button type='button' onClick={()=>remove(index)}>-</button>
+                                                                            }
+                                                                            
+                                                                            <button type='button' onClick={()=> push('')}>+</button>
+            
+                                                                        </div>
+                                                                    )
+            
+                                                                    )
+                                                                }
+            
+                                                        </div>
+            
+                                                    }
+                                                }
+            
+                                            </FieldArray>
+            
+                                    </div>
+                                    <button type='submit' onClick={()=> formik.validateField('comments')}>Validate comments </button>
+                                    <button type='submit' onClick={()=> formik.validateForm()}>Validate All</button>
+                                    <button type='submit' onClick={()=> formik.setFieldTouched('comments')}>Visit Fields  </button>
+                                    <button type='submit' onClick={()=> formik.setTouched({
+                                        name:true,
+                                        email:true,
+                                        chanel:true,
+                                        comments:true,
+                                    })}>Validate All</button>
+                        
+                        <button type='submit'>Submit</button>
+                    </Form>
+            
+                    )
+            }
+        }
+       
 
     </Formik>
   )
