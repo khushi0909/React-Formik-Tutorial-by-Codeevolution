@@ -225,4 +225,9 @@ add enableReinitializeprop -imp as it decides weather your form can change the i
 
 onemore scenario where you can think ofusing it is the to fetch the select drop-down values from an API in that case you can show the loading indicator till API call is done and once the API call is done update the state variable with the response and only after that is done render the formik component
 
-###
+### RESET FORM DATA 
+
+two scenarios of handling form reset 
+
+1)resetting the form data with a reset button- reset button 
+2)resetting the form data after the form submission has completed-we use the submit props on the onSubmit method 

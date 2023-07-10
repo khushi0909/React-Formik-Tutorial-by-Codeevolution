@@ -46,6 +46,7 @@ const onSubmit= (values,onSubmitProps)=>{
     console.log("Form Values",values)
     console.log('submit props ',onSubmitProps)
     onSubmitProps.setSubmitting(false)
+    onSubmitProps.resetForm(initialValues)
 }
 
 const validationSchema = Yup.object({
@@ -189,6 +190,7 @@ function YouTubeForm() {
                                         comments:true,
                                     })}>Validate All</button> */}
                         <button type='button' onClick={()=> setFormValues(savedValues)}>Load saved data</button>
+                        <button type='reset'>Reset</button>
                         <button type='submit' disabled={!formik.isValid || formik.isSubmitting}>Submit</button>
                     </Form>
             
