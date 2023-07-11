@@ -24,8 +24,8 @@ function LoginForm() {
         {
             formik =>{
                 <Form>
-                        <FormikControl control='input' type='email' label='Email' name='email'/>
-                        <FormikControl control='input' type='password' label='password' name='password'/>
+                        <FormikControl control='chakrainput' type='email' label='Email' name='email'/>
+                        <FormikControl control='chakrainput' type='password' label='password' name='password'/>
                         <button type='submit' disabled={!formik.isValid}>Submit</button>
                 </Form>
             }
