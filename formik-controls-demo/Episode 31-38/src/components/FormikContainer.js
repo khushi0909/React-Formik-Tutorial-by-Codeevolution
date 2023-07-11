@@ -18,24 +18,31 @@ function FormikContainer() {
     { key: 'Option 2', value: 'roption2' },
     { key: 'Option 3', value: 'roption3' }
     ]
+    const checkboxOptions = [
+        { key: 'Option 1', value: 'cOption1' },
+        { key: 'Option 2', value: 'cOption2' },
+        { key: 'Option 3', value: 'cOption3' }
+      ]
 
     const initialValues = {
         email:' ',
         description:'',
-        selctOption:'',
-        radioOption:''
+        selectOption:'',
+        radioOption:'',
+        checkboxOption:[],
+        birthDate: null
     }
     const validationSchema = Yup.object({
         email: Yup.string().required('Required'),
         description: Yup.string().required('Required'),
         selectOption: Yup.string().required('Required'),
-        radioOption: Yup.string().required('Required')
-
-
-
+        radioOption: Yup.string().required('Required'),
+        checkboxOption: Yup.array().min(1).required('Required'),
+        birthDate: Yup.date().required('Required').nullable()
     })
     const onSubmit = values =>{
         console.log("Form data",values)
+        console.log('Saved Data',JSON.parse(JSON.stringify(values)))
     }
   return (
     <Formik initialValues={initialValues}
@@ -59,6 +66,15 @@ function FormikContainer() {
             name='radioOption'
             options={radioOptions}
              />
+
+<FormikControl
+            control='checkbox'
+            label='Checkbox topics'
+            name='checkboxOption'
+            options={checkboxOptions}
+          />
+
+          <FormikControl control='date' label='Pick a date' name='birthDate'/>
 
                 <button type= 'submit'>Submit</button>
             </Form>
